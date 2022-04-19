@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 
 class NeighborHood(models.Model):
     name = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, null=True)
     occupants = models.IntegerField()
     admin = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
@@ -18,7 +18,7 @@ class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     name = models.CharField(max_length=50)
     bio = models.TextField()
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, null=True)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     neighborhood = models.ForeignKey(NeighborHood, null=True, on_delete=models.CASCADE)
 
@@ -35,3 +35,12 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+class Post(models.Model):
+    content = models.TextField()
+    date_posted = models.DateTimeField(auto_now_add = True)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(NeighborHood, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content
+    
