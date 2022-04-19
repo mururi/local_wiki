@@ -13,6 +13,19 @@ class NeighborHood(models.Model):
     def __str__(self):
         return self.name
 
+    def save_neighborhood(self):
+        '''
+        Method to save a Neighborhood object
+        '''
+        self.save()
+
+    @classmethod
+    def delete_neighborhood(cls, id):
+        '''
+        Method to delete a Neighborhood object
+        '''
+        cls.objects.filter(id = id).delete()
+
 
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
