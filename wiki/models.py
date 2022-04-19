@@ -44,6 +44,26 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+    def save_profile(self):
+        '''
+        Method to save a Profile object
+        '''
+        self.save()
+
+    @classmethod
+    def delete_profile(cls, id):
+        '''
+        Method to delete a Profile object
+        '''
+        cls.objects.filter(id = id).delete()
+
+    @classmethod
+    def find_profile(cls, profile_id):
+        '''
+        Method to find a Profile by its id
+        '''
+        return cls.objects.filter(id = profile_id)[0]
+
 class Business(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
