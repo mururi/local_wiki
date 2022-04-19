@@ -71,3 +71,12 @@ class BusinessTestClass(TestCase):
         '''
 
         self.assertTrue(self.new_business, Business)
+
+    def test_delete(self):
+        '''
+        Method to test the delete business method
+        '''
+        
+        Business.delete_business(self.new_business.id)
+        businesses = Business.objects.all()
+        self.assertTrue(len(businesses) == 0)
