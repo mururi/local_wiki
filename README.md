@@ -1,4 +1,4 @@
-# Awwwards Clone
+# Local Wiki
 #### A Django Neighborhood Watch/Local Wiki, Apr 18, 2022 
 #### By **Dennis Kiboi** 
 
