@@ -80,3 +80,11 @@ class BusinessTestClass(TestCase):
         Business.delete_business(self.new_business.id)
         businesses = Business.objects.all()
         self.assertTrue(len(businesses) == 0)
+
+    def test_find_business(self):
+        '''
+        Method to test the find business method
+        '''
+
+        business = Business.find_business(1)
+        self.assertEqual(business.name, 'test business')
