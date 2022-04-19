@@ -54,6 +54,12 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+    def save_business(self):
+        '''
+        Method to save a Business object
+        '''
+        self.save()
+
 class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add = True)
