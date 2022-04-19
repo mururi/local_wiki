@@ -29,7 +29,7 @@ class NeighborHood(models.Model):
     @classmethod
     def find_neigborhood(cls, neigborhood_id):
         '''
-        Method to find a Neighborhood bi its id
+        Method to find a Neighborhood by its id
         '''
         return cls.objects.filter(id = neigborhood_id)[0]
 
@@ -66,6 +66,13 @@ class Business(models.Model):
         Method to delete a Business object
         '''
         cls.objects.filter(id = id).delete()
+
+    @classmethod
+    def find_business(cls, business_id):
+        '''
+        Method to find a Business by its id
+        '''
+        return cls.objects.filter(id = business_id)[0]
 
 class Post(models.Model):
     content = models.TextField()
