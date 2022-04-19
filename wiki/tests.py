@@ -65,4 +65,9 @@ class BusinessTestClass(TestCase):
         self.new_business = Business(id = 1, name = 'test business', description = 'test business description', email = 'info@business.com', user = self.new_user, neighborhood = self.new_neighborhood)
         self.new_business.save()
 
-        
+    def test_instance(self):
+        '''
+        Method to test if the new_business object is an instance of the Business model class
+        '''
+
+        self.assertTrue(self.new_business, Business)
