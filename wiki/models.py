@@ -26,6 +26,12 @@ class NeighborHood(models.Model):
         '''
         cls.objects.filter(id = id).delete()
 
+    @classmethod
+    def find_neigborhood(cls, neigborhood_id):
+        '''
+        Method to find a Neighborhood bi its id
+        '''
+        return cls.objects.filter(id = neigborhood_id)[0]
 
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
