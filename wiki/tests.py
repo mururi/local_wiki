@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from . models import NeighborHood, Business
+from . models import NeighborHood, Business, Profile
 
 
 class NeighborhoodTestClass(TestCase):
@@ -88,3 +88,48 @@ class BusinessTestClass(TestCase):
 
         business = Business.find_business(1)
         self.assertEqual(business.name, 'test business')
+
+class ProfileTestClass(TestCase):
+    '''
+     Test class to test the behaviour of the Profile class and methods
+    '''
+
+    def setUp(self):
+        '''
+        Setup method to run before each test case
+        '''
+        # Creating a new user
+        self.new_user = User(username = 'Doe', email = 'johndoe@company.com', password = 'test_pass')
+        self.new_user.save()
+
+        # Creating a new neighborhood
+        self.new_neighborhood = NeighborHood(id = 1, name = 'test neighborhood', location = 'test location', occupants = 10, admin = self.new_user)
+        self.new_neighborhood.save()
+
+        # Creating a new profile
+        self.new_profile = Profile(id = 1, name = 'test profile', bio = 'test profile bio', location = 'test location', user = self.new_user, neighborhood = self.new_neighborhood)
+        self.new_profile.save()
+
+    def test_instance(self):
+        '''
+        Method to test if the new_profile object is an instance of the Profile model class
+        '''
+
+        self.assertTrue(self.new_profile, Profile)
+
+    def test_delete(self):
+        '''
+        Method to test the delete profile method
+        '''
+        
+        Profile.delete_profile(self.new_profile.id)
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles) == 0)
+
+    def test_find_profile(self):
+        '''
+        Method to test the find profile method
+        '''
+
+        profile = Profile.find_profile(1)
+        self.assertEqual(profile.name, 'test profile')
