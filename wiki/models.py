@@ -60,6 +60,13 @@ class Business(models.Model):
         '''
         self.save()
 
+    @classmethod
+    def delete_business(cls, id):
+        '''
+        Method to delete a Business object
+        '''
+        cls.objects.filter(id = id).delete()
+
 class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add = True)
