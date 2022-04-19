@@ -30,7 +30,7 @@ class Business(models.Model):
     description = models.TextField()
     email = models.EmailField(max_length=60)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    neighborhood = models.ForeignKey(NeighborHood, null=True, on_delete=True)
+    neighborhood = models.ForeignKey(NeighborHood, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
