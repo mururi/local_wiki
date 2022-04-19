@@ -27,10 +27,19 @@ class NeighborhoodTestClass(TestCase):
 
         self.assertTrue(self.new_neighborhood, NeighborHood)
 
-    def test_delete_method(self):
+    def test_delete(self):
         '''
         Method to test the delete neighborhood method
         '''
+        
         NeighborHood.delete_neighborhood(self.new_neighborhood.id)
         neighborhoods = NeighborHood.objects.all()
         self.assertTrue(len(neighborhoods) == 0)
+
+    def test_find_neighborhood(self):
+        '''
+        Method to test the find neighborhood method
+        '''
+
+        neighborhood = NeighborHood.find_neigborhood(1)
+        self.assertEqual(neighborhood.name, 'test neighborhood')
